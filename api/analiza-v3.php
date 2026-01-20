@@ -251,7 +251,26 @@ try {
         $meteo['date_curente'],
         $context
     );
+     */
+
+    // ─────────────────────────────────────────────────────────────
+    // 5.5. ANALIZĂ CONTEXT DINAMIC (pentru context-card)
+    // ─────────────────────────────────────────────────────────────
     
+    $context_dinamic = analizaContextDinamic(
+        $evaluare['factori'],
+        $evaluare['meteo_status'],
+        $nivel_experienta,
+        $altitudine_tinta
+    );
+    
+    // Merge context static + dinamic
+    $context['conditii_text'] = $context_dinamic['conditii_text'];
+    $context['recomandari'] = $context_dinamic['recomandari'];
+    $context['factori_critici_count'] = $context_dinamic['factori_critici_count'];
+    $context['factori_atentie_count'] = $context_dinamic['factori_atentie_count'];
+    $context['factori_severi_count'] = $context_dinamic['factori_severi_count'];
+
     // ─────────────────────────────────────────────────────────────
     // 6. APLICARE MATRICE RISC → DECIZIE FINALĂ
     // ─────────────────────────────────────────────────────────────
