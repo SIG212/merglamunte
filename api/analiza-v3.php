@@ -324,8 +324,10 @@ try {
             'factori' => $evaluare['factori'],
             'no_go_count' => $evaluare['no_go_count'],
             'caution_count' => $evaluare['caution_count'],
+            'factori_severi_count' => $evaluare['factori_severi_count'] ?? 0, // ← NOU
             'meteo_status' => $evaluare['meteo_status']
         ],
+
         
         'cod_vreme_rea' => $cod_vreme_rea,
         
