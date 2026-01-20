@@ -1,31 +1,7 @@
 {
   "functions": {
-    "api/**/*.php": {
+    "api/*.php": {
       "runtime": "vercel-php@0.7.0"
     }
-  },
-  "rewrites": [
-    {
-      "source": "/api/:path*",
-      "destination": "/api/:path*"
-    }
-  ]
+  }
 }
-```
-
-**IMPORTANT:** Șterge secțiunea `"routes"` dacă există - Vercel preferă `"rewrites"` pentru funcții serverless.
-
----
-
-## Verificare structură fișiere
-
-Vercel așteaptă ca fișierele PHP să fie **direct în `/api/`**, nu nested prea adânc.
-
-###Structura ta actuală:
-```
-/api/
-  ├── analiza-v3.php          ← Bine
-  ├── config/
-  │   └── masive.php          ← Posibil problematic
-  ├── services/
-  │   └── meteo-service.php   ← Posibil problematic
