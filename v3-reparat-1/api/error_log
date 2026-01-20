@@ -1,0 +1,246 @@
+[16-Jan-2026 09:44:53 UTC] PHP Parse error:  syntax error, unexpected string content "", expecting "-" or identifier or variable or number in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 167
+[16-Jan-2026 09:45:09 UTC] PHP Parse error:  syntax error, unexpected string content "", expecting "-" or identifier or variable or number in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 166
+[16-Jan-2026 09:45:10 UTC] PHP Parse error:  syntax error, unexpected string content "", expecting "-" or identifier or variable or number in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 166
+[16-Jan-2026 09:45:21 UTC] PHP Parse error:  syntax error, unexpected string content "", expecting "-" or identifier or variable or number in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 166
+[16-Jan-2026 12:37:00 UTC] PHP Warning:  require_once(/home/thechill/merglamunte.ro/v3-reparat-1/api/utils/statii-helper.php): Failed to open stream: No such file or directory in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 38
+[16-Jan-2026 12:37:00 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/thechill/merglamunte.ro/v3-reparat-1/api/utils/statii-helper.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php:38
+Stack trace:
+#0 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 38
+[16-Jan-2026 12:37:01 UTC] PHP Warning:  require_once(/home/thechill/merglamunte.ro/v3-reparat-1/api/utils/statii-helper.php): Failed to open stream: No such file or directory in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 38
+[16-Jan-2026 12:37:01 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/thechill/merglamunte.ro/v3-reparat-1/api/utils/statii-helper.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php:38
+Stack trace:
+#0 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 38
+[16-Jan-2026 12:37:02 UTC] PHP Warning:  require_once(/home/thechill/merglamunte.ro/v3-reparat-1/api/utils/statii-helper.php): Failed to open stream: No such file or directory in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 38
+[16-Jan-2026 12:37:02 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/thechill/merglamunte.ro/v3-reparat-1/api/utils/statii-helper.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php:38
+Stack trace:
+#0 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 38
+[16-Jan-2026 12:37:03 UTC] PHP Warning:  require_once(/home/thechill/merglamunte.ro/v3-reparat-1/api/utils/statii-helper.php): Failed to open stream: No such file or directory in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 38
+[16-Jan-2026 12:37:03 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/thechill/merglamunte.ro/v3-reparat-1/api/utils/statii-helper.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php:38
+Stack trace:
+#0 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 38
+[16-Jan-2026 12:37:04 UTC] PHP Warning:  require_once(/home/thechill/merglamunte.ro/v3-reparat-1/api/utils/statii-helper.php): Failed to open stream: No such file or directory in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 38
+[16-Jan-2026 12:37:04 UTC] PHP Fatal error:  Uncaught Error: Failed opening required '/home/thechill/merglamunte.ro/v3-reparat-1/api/utils/statii-helper.php' (include_path='.:/opt/cpanel/ea-php81/root/usr/share/pear') in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php:38
+Stack trace:
+#0 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 38
+[16-Jan-2026 12:39:54 UTC] PHP Fatal error:  Cannot redeclare genereazaMesajDecizie() (previously declared in /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php:221) in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 119
+[16-Jan-2026 12:40:00 UTC] PHP Fatal error:  Cannot redeclare genereazaMesajDecizie() (previously declared in /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php:221) in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 119
+[16-Jan-2026 12:43:18 UTC] ANM fetch failed: HTTP 404, Error: , URL: https://merglamunte.ro/api/meteo.php?masiv=bucegi
+[16-Jan-2026 12:43:18 UTC] ANM fetch failed: HTTP 404, Error: , URL: https://merglamunte.ro/api/meteo.php?masiv=bucegi
+[16-Jan-2026 12:43:20 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function genereazaMesajDecizie(), 2 passed in /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php on line 154 and exactly 4 expected in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php:47
+Stack trace:
+#0 /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php(154): genereazaMesajDecizie('VERDE', Array)
+#1 /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php(260): aplicaMatrice('mediu', 'iarna', 2, 'VERDE', Array)
+#2 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 47
+[16-Jan-2026 12:43:21 UTC] ANM fetch failed: HTTP 404, Error: , URL: https://merglamunte.ro/api/meteo.php?masiv=bucegi
+[16-Jan-2026 12:43:21 UTC] ANM fetch failed: HTTP 404, Error: , URL: https://merglamunte.ro/api/meteo.php?masiv=bucegi
+[16-Jan-2026 12:43:23 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function genereazaMesajDecizie(), 2 passed in /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php on line 154 and exactly 4 expected in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php:47
+Stack trace:
+#0 /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php(154): genereazaMesajDecizie('VERDE', Array)
+#1 /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php(260): aplicaMatrice('mediu', 'iarna', 2, 'VERDE', Array)
+#2 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 47
+[16-Jan-2026 12:43:25 UTC] ANM fetch failed: HTTP 404, Error: , URL: https://merglamunte.ro/api/meteo.php?masiv=bucegi
+[16-Jan-2026 12:43:25 UTC] ANM fetch failed: HTTP 404, Error: , URL: https://merglamunte.ro/api/meteo.php?masiv=bucegi
+[16-Jan-2026 12:43:26 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function genereazaMesajDecizie(), 2 passed in /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php on line 154 and exactly 4 expected in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php:47
+Stack trace:
+#0 /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php(154): genereazaMesajDecizie('VERDE', Array)
+#1 /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php(260): aplicaMatrice('mediu', 'iarna', 2, 'VERDE', Array)
+#2 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 47
+[16-Jan-2026 12:43:36 UTC] ANM fetch failed: HTTP 404, Error: , URL: https://merglamunte.ro/api/meteo.php?masiv=ceahlau
+[16-Jan-2026 12:43:36 UTC] ANM fetch failed: HTTP 404, Error: , URL: https://merglamunte.ro/api/meteo.php?masiv=ceahlau
+[16-Jan-2026 12:43:37 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function genereazaMesajDecizie(), 2 passed in /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php on line 154 and exactly 4 expected in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php:47
+Stack trace:
+#0 /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php(154): genereazaMesajDecizie('VERDE', Array)
+#1 /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php(260): aplicaMatrice('mediu', 'iarna', 2, 'VERDE', Array)
+#2 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 47
+[16-Jan-2026 12:44:33 UTC] ANM fetch failed: HTTP 404, Error: , URL: https://merglamunte.ro/api/meteo.php?masiv=bucegi
+[16-Jan-2026 12:44:33 UTC] ANM fetch failed: HTTP 404, Error: , URL: https://merglamunte.ro/api/meteo.php?masiv=bucegi
+[16-Jan-2026 12:44:34 UTC] PHP Fatal error:  Uncaught ArgumentCountError: Too few arguments to function genereazaMesajDecizie(), 2 passed in /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php on line 154 and exactly 4 expected in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php:47
+Stack trace:
+#0 /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php(154): genereazaMesajDecizie('VERDE', Array)
+#1 /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php(260): aplicaMatrice('mediu', 'iarna', 2, 'VERDE', Array)
+#2 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 47
+[16-Jan-2026 12:46:23 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php:48
+Stack trace:
+#0 /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php(158): genereazaMesajDecizie('VERDE', Array, 'VERDE', 2)
+#1 /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php(260): aplicaMatrice('mediu', 'iarna', 2, 'VERDE', Array)
+#2 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 48
+[16-Jan-2026 12:46:27 UTC] PHP Fatal error:  Uncaught TypeError: Cannot access offset of type string on string in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php:48
+Stack trace:
+#0 /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php(158): genereazaMesajDecizie('VERDE', Array, 'VERDE', 2)
+#1 /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php(260): aplicaMatrice('mediu', 'iarna', 2, 'VERDE', Array)
+#2 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 48
+[16-Jan-2026 12:48:12 UTC] PHP Fatal error:  Cannot redeclare genereazaMesajDecizie() (previously declared in /home/thechill/merglamunte.ro/v3-reparat-1/api/utils/helpers.php:235) in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/matrice-service.php on line 119
+[16-Jan-2026 12:58:20 UTC] PHP Deprecated:  urlencode(): Passing null to parameter #1 ($string) of type string is deprecated in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/meteo-service.php on line 14
+[16-Jan-2026 12:58:41 UTC] PHP Deprecated:  urlencode(): Passing null to parameter #1 ($string) of type string is deprecated in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/meteo-service.php on line 14
+[16-Jan-2026 12:59:33 UTC] PHP Deprecated:  urlencode(): Passing null to parameter #1 ($string) of type string is deprecated in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/meteo-service.php on line 14
+[16-Jan-2026 13:01:12 UTC] PHP Deprecated:  urlencode(): Passing null to parameter #1 ($string) of type string is deprecated in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/meteo-service.php on line 14
+[16-Jan-2026 14:02:00 UTC] PHP Warning:  Undefined array key "nivel_text" in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 201
+[16-Jan-2026 14:02:00 UTC] PHP Warning:  Undefined array key "descriere" in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 202
+[16-Jan-2026 14:02:00 UTC] PHP Warning:  Undefined array key "valabilitate" in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 203
+[16-Jan-2026 14:02:00 UTC] PHP Warning:  Undefined array key "strat_zapada" in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 207
+[16-Jan-2026 14:02:29 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function getBuletinDataForMasiv() in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php:186
+Stack trace:
+#0 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 186
+[16-Jan-2026 14:05:03 UTC] PHP Warning:  Undefined array key "nivel_text" in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 201
+[16-Jan-2026 14:05:03 UTC] PHP Warning:  Undefined array key "descriere" in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 202
+[16-Jan-2026 14:05:03 UTC] PHP Warning:  Undefined array key "strat_zapada" in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 207
+[16-Jan-2026 14:07:58 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:07:58 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:07:58 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:08:50 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:08:50 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:08:50 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:09:10 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:09:10 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:09:10 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:11:32 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:11:32 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:11:32 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:12:18 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:12:18 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:12:18 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:12:30 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:12:30 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:12:30 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:18:08 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:18:08 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:18:08 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:19:10 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:19:10 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:19:10 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:19:23 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:19:23 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:19:23 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:20:33 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:20:33 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:20:33 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:20:40 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:20:40 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:20:40 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:24:38 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:24:38 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:24:38 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:25:33 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:25:33 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:25:33 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 14:26:17 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 14:26:17 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 14:26:17 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 16:20:25 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 16:20:25 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 16:20:25 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 16:21:10 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 16:21:10 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 16:21:10 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 16:21:46 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 16:21:46 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 16:21:46 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 16:23:11 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 16:23:11 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 16:23:11 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 16:43:58 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 16:43:58 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 16:43:58 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 20:25:42 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 20:25:42 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 20:25:42 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 20:26:30 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 20:26:30 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 20:26:30 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[16-Jan-2026 20:31:39 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[16-Jan-2026 20:31:39 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[16-Jan-2026 20:31:39 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[17-Jan-2026 09:35:47 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[17-Jan-2026 09:35:47 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[17-Jan-2026 09:35:47 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[17-Jan-2026 09:40:03 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[17-Jan-2026 09:40:03 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[17-Jan-2026 09:40:03 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[17-Jan-2026 09:41:34 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[17-Jan-2026 09:41:34 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[17-Jan-2026 09:41:34 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[17-Jan-2026 22:33:24 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[17-Jan-2026 22:33:24 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[17-Jan-2026 22:33:24 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[17-Jan-2026 22:33:32 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[17-Jan-2026 22:33:32 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[17-Jan-2026 22:33:32 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 11:03:52 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 11:03:52 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 11:03:52 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 11:41:22 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 11:41:22 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 11:41:22 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 11:42:50 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 11:42:50 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 11:42:50 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 11:43:24 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 11:43:24 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 11:43:24 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 11:44:01 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 11:44:01 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 11:44:01 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 11:59:37 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 11:59:37 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 11:59:37 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 16:57:54 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 16:57:54 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 16:57:54 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 16:59:36 UTC] PHP Fatal error:  Uncaught ValueError: mb_strpos(): Argument #3 ($offset) must be contained in argument #1 ($haystack) in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/buletin-nivologic.php:201
+Stack trace:
+#0 /home/thechill/merglamunte.ro/v3-reparat-1/api/services/buletin-nivologic.php(201): mb_strpos('sub 1800 m: tem...', 'page break', 50)
+#1 /home/thechill/merglamunte.ro/v3-reparat-1/api/services/buletin-nivologic.php(445): findMasivSection('Buletin nivomet...', 'fagaras', 'meridionali', 1200)
+#2 /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php(186): getBuletinDataForMasiv('fagaras', 1200)
+#3 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/buletin-nivologic.php on line 201
+[18-Jan-2026 17:01:49 UTC] PHP Fatal error:  Uncaught ValueError: mb_strpos(): Argument #3 ($offset) must be contained in argument #1 ($haystack) in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/buletin-nivologic.php:201
+Stack trace:
+#0 /home/thechill/merglamunte.ro/v3-reparat-1/api/services/buletin-nivologic.php(201): mb_strpos('sub 1800 m: tem...', 'page break', 50)
+#1 /home/thechill/merglamunte.ro/v3-reparat-1/api/services/buletin-nivologic.php(445): findMasivSection('Buletin nivomet...', 'fagaras', 'meridionali', 1200)
+#2 /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php(186): getBuletinDataForMasiv('fagaras', 1200)
+#3 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/buletin-nivologic.php on line 201
+[18-Jan-2026 17:01:59 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 17:01:59 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 17:01:59 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 17:05:09 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function getBuletinDataForMasiv() in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php:186
+Stack trace:
+#0 {main}
+  thrown in /home/thechill/merglamunte.ro/v3-reparat-1/api/analiza-v3.php on line 186
+[18-Jan-2026 17:05:20 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 17:05:20 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 17:05:20 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 17:35:28 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 17:35:28 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 17:35:28 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 17:35:32 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 17:35:32 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 17:35:32 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 17:41:48 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 17:41:48 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 17:41:48 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 17:41:58 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 17:41:58 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 17:41:58 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 17:42:05 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 17:42:05 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 17:42:05 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 17:44:10 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 17:44:10 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 17:44:10 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365
+[18-Jan-2026 17:45:29 UTC] PHP Warning:  Undefined array key "stare" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 357
+[18-Jan-2026 17:45:29 UTC] PHP Warning:  Undefined array key "descriere_generala" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 363
+[18-Jan-2026 17:45:29 UTC] PHP Warning:  Undefined array key "detalii_altitudine" in /home/thechill/merglamunte.ro/v3-reparat-1/api/services/evaluare-factori.php on line 365

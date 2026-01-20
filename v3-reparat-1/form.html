@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Verifică Condițiile - MergLaMunte.ro</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Jost', sans-serif; }
+    </style>
+</head>
+<body class="bg-slate-50 min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-md">
+        <div class="bg-white rounded-2xl shadow-lg p-6">
+            <h1 class="text-2xl font-bold text-slate-900 mb-6 text-center">🏔️ Verifică Condițiile</h1>
+            
+            <form id="analyzeForm" class="space-y-5">
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Masiv Montan</label>
+                    <select name="masiv" required class="w-full border border-slate-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">Selectează masivul...</option>
+                        <option value="bucegi">Bucegi</option>
+                        <option value="fagaras">Făgăraș</option>
+                        <option value="retezat">Retezat</option>
+                        <option value="piatra-craiului">Piatra Craiului</option>
+                        <option value="ceahlau">Ceahlău</option>
+                        <option value="rodnei">Munții Rodnei</option>
+                        <option value="ciucas">Ciucaș</option>
+                        <option value="calimani">Călimani</option>
+                        <option value="parang">Parâng</option>
+                        <option value="tarcu">Țarcu</option>
+                        <option value="godeanu">Godeanu</option>
+                        <option value="cozia">Cozia</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Data Drumeției</label>
+                    <input type="date" name="data" required 
+                           class="w-full border border-slate-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Nivel Experiență</label>
+                    <select name="nivel" required class="w-full border border-slate-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                        <option value="">Selectează nivelul...</option>
+                        <option value="incepator">Începător</option>
+                        <option value="mediu">Mediu</option>
+                        <option value="experimentat">Experimentat</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label class="block text-sm font-medium text-slate-700 mb-2">Altitudine Țintă (metri)</label>
+                    <input type="number" name="altitudine" required min="500" max="2700" placeholder="ex: 2000"
+                           class="w-full border border-slate-300 rounded-lg p-3 focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                </div>
+                
+                <button type="submit" 
+                        class="w-full bg-slate-900 text-white font-semibold py-3 px-6 rounded-lg hover:bg-slate-800 transition-colors">
+                    Verifică Condițiile
+                </button>
+            </form>
+        </div>
+        
+        <p class="text-center text-slate-500 text-sm mt-6">
+            🏔️ MergLaMunte.ro - Drumeții în siguranță
+        </p>
+    </div>
+
+    <script>
+        // Set default date to today
+        document.querySelector('input[name="data"]').valueAsDate = new Date();
+        
+        // Set min/max dates
+        const today = new Date();
+        const maxDate = new Date();
+        maxDate.setDate(today.getDate() + 7);
+        
+        document.querySelector('input[name="data"]').min = today.toISOString().split('T')[0];
+        document.querySelector('input[name="data"]').max = maxDate.toISOString().split('T')[0];
+        
+        // Form submit
+        document.getElementById('analyzeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const formData = new FormData(this);
+            const params = new URLSearchParams();
+            
+            params.set('masiv', formData.get('masiv'));
+            params.set('data', formData.get('data'));
+            params.set('nivel', formData.get('nivel'));
+            params.set('altitudine', formData.get('altitudine'));
+            
+            window.location.href = `results.html?${params.toString()}`;
+        });
+    </script>
+</body>
+</html>
