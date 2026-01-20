@@ -12,6 +12,89 @@
 /**
  * Evaluare completă a tuturor factorilor
  */
+/**
+ * Determină dacă un factor GALBEN este SEVER
+ * (afectează verdictul chiar dacă e singur)
+ */
+if (!function_exists('eFactorSever')) {
+    function eFactorSever($nume_factor, $factor_data) {
+        // Factor e deja ROȘU → nu verificăm aici
+        if ($factor_data['status'] === 'ROSU') {
+            return false; // Se gestionează separat prin no_go_count
+        }
+        
+        // Factor e VERDE → nu e sever
+        if ($factor_data['status'] !== 'GALBEN') {
+            return false;
+        }
+        
+        // FACTORI SEVERI - chiar dacă sunt GALBEN
+        
+        // 1. AVALANȘĂ 3+
+        if ($nume_factor === 'risc_avalansa') {
+            // Extrage nivelul din detalii (ex: "Risc 3/5")
+            if (preg_match('/Risc\s+(\d)/', $factor_data['detalii'], $matches)) {
+                $nivel = intval($matches[1]);
+                if ($nivel >= 3) {
+                    return true; // ⚠️ SEVER
+                }
+            }
+        }
+        
+        // 2. COD METEO ACTIV (galben/portocaliu)
+        if ($nume_factor === 'cod_meteo_activ') {
+            return true; // ⚠️ SEVER - cod ANM e întotdeauna serios
+        }
+        
+        // 3. VÂNT PUTERNIC (>50 km/h)
+        if ($nume_factor === 'vant') {
+            if (preg_match('/(\d+)\s*km\/h/', $factor_data['detalii'], $matches)) {
+                $viteza = intval($matches[1]);
+                if ($viteza >= 50) {
+                    return true; // ⚠️ SEVER
+                }
+            }
+        }
+        
+        // 4. WINDCHILL EXTREM (<-15°C)
+        if ($nume_factor === 'stres_termic') {
+            if (preg_match('/(-?\d+\.?\d*)\s*°C/', $factor_data['detalii'], $matches)) {
+                $windchill = floatval($matches[1]);
+                if ($windchill < -15) {
+                    return true; // ⚠️ SEVER
+                }
+            }
+        }
+        
+        // 5. VISCOL / VIZIBILITATE ZERO
+        if ($nume_factor === 'vizibilitate') {
+            if (stripos($factor_data['detalii'], 'viscol') !== false ||
+                stripos($factor_data['detalii'], 'zero') !== false) {
+                return true; // ⚠️ SEVER
+            }
+        }
+        
+        // 6. NINSOARE ABUNDENTĂ
+        if ($nume_factor === 'precipitatii_ninsoare') {
+            if (stripos($factor_data['detalii'], 'abundent') !== false) {
+                return true; // ⚠️ SEVER
+            }
+        }
+        
+        // 7. STRAT ZĂPADĂ MASIV (>100cm)
+        if ($nume_factor === 'stare_sol') {
+            if (preg_match('/(\d+)\s*cm/', $factor_data['detalii'], $matches)) {
+                $zapada = intval($matches[1]);
+                if ($zapada > 100) {
+                    return true; // ⚠️ SEVER
+                }
+            }
+        }
+        
+        // Altfel, factor GALBEN normal (nu sever)
+        return false;
+    }
+}
 function evaluareFactoriComplet(
     $valori_meteo,
     $avalansa,
@@ -129,21 +212,34 @@ function evaluareFactoriComplet(
         }
     }
     
-    // Determină status meteo general
-    $meteo_status = 'VERDE';
-    if ($no_go_count > 0) {
+    // Numără factori severi
+    $factori_severi_count = 0;
+    foreach ($factori as $nume => $factor) {
+        if (eFactorSever($nume, $factor)) {
+            $factori_severi_count++;
+        }
+    }
+    
+    // DETERMINARE STATUS METEO (cu logica SEVERI)
+    if ($no_go_count >= 1) {
         $meteo_status = 'ROSU';
-    } elseif ($caution_count >= 2) {
+    } elseif ($factori_severi_count >= 1 || $caution_count >= 2) {
+        // ⚠️ LOGICA NOUĂ:
+        // - Orice factor SEVER → GALBEN
+        // - SAU 2+ factori GALBEN normali → GALBEN
         $meteo_status = 'GALBEN';
+    } else {
+        $meteo_status = 'VERDE';
     }
     
     return [
         'factori' => $factori,
         'no_go_count' => $no_go_count,
         'caution_count' => $caution_count,
+        'factori_severi_count' => $factori_severi_count, // ← NOU
         'meteo_status' => $meteo_status
     ];
-}
+
 
 // ═══════════════════════════════════════════════════════════════
 // FUNCȚII EVALUARE INDIVIDUALĂ
