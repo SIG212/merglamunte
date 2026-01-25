@@ -1,0 +1,1098 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>V1 - Factori Meteo | MergLaMunte.ro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Jost', sans-serif;
+            -webkit-font-smoothing: antialiased;
+        }
+        
+        /* iOS Weather frosted glass cards */
+        .weather-card {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(20px) saturate(180%);
+            -webkit-backdrop-filter: blur(20px) saturate(180%);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            transition: all 0.3s ease;
+        }
+        
+        .weather-card:hover {
+            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-2px);
+        }
+        
+        /* Status indicators - subtle, not colored backgrounds */
+        .status-bar {
+            height: 3px;
+            border-radius: 2px;
+            margin-top: 8px;
+            margin-bottom: 12px;
+        }
+        
+        .status-bar.red { background: #ef4444; }
+        .status-bar.yellow { background: #f59e0b; }
+        .status-bar.green { background: #10b981; }
+        
+        .status-message {
+            font-size: 0.875rem;
+            font-weight: 500;
+            line-height: 1.4;
+            opacity: 0.9;
+        }
+        
+        .status-message.red { color: #fca5a5; }
+        .status-message.yellow { color: #fcd34d; }
+        .status-message.green { color: #86efac; }
+        
+        /* Collapse toggle animation */
+        .rotate-180 {
+            transform: rotate(180deg);
+        }
+        
+        /* Summary section separator */
+        .summary-section:not(:last-child) {
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Severity colors with WCAG AA contrast (4.5:1) */
+        .severity-danger {
+            color: #fca5a5; /* Light red - passes 4.5:1 on dark bg */
+        }
+        
+        .severity-warning {
+            color: #fcd34d; /* Light yellow - passes 4.5:1 on dark bg */
+        }
+        
+        .severity-safe {
+            color: #86efac; /* Light green */
+        }
+        
+        /* Typography - iOS style */
+        .metric-value {
+            font-size: 2.5rem;
+            font-weight: 200;
+            line-height: 1;
+            letter-spacing: -0.02em;
+        }
+        
+        @media (min-width: 768px) {
+            .metric-value {
+                font-size: 3.5rem;
+            }
+        }
+        
+        .metric-unit {
+            font-size: 1.5rem;
+            font-weight: 200;
+            opacity: 0.6;
+            margin-left: 4px;
+        }
+        
+        @media (min-width: 768px) {
+            .metric-unit {
+                font-size: 2rem;
+            }
+        }
+        
+        .card-label {
+            font-size: 0.75rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            opacity: 0.6;
+        }
+        
+        @media (min-width: 768px) {
+            .card-label {
+                font-size: 0.8125rem;
+            }
+        }
+        
+        .card-detail {
+            font-size: 0.875rem;
+            font-weight: 400;
+            opacity: 0.8;
+            line-height: 1.4;
+        }
+        
+        @media (min-width: 768px) {
+            .card-detail {
+                font-size: 0.9375rem;
+            }
+        }
+    </style>
+</head>
+<body class="bg-gradient-to-br from-slate-800 via-slate-700 to-slate-800 min-h-screen text-white p-4 md:p-8">
+    
+    <!-- Header -->
+    <div class="max-w-5xl mx-auto mb-6">
+        <h1 class="text-3xl font-light mb-1">🏔️ Factori Meteo</h1>
+        <p class="text-sm opacity-60">V1 Development - iOS Weather Style</p>
+    </div>
+
+    <!-- Input Form -->
+    <div class="max-w-5xl mx-auto mb-6 weather-card rounded-3xl p-5">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-3 mb-4">
+            <!-- Masiv Selection -->
+            <div>
+                <label class="card-label block mb-2">Masiv Montan</label>
+                <select id="masivSelect" class="w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-white/30">
+                    <option value="bucegi">Bucegi</option>
+                    <option value="fagaras">Făgăraș</option>
+                    <option value="retezat">Retezat</option>
+                    <option value="piatra_craiului">Piatra Craiului</option>
+                    <option value="ceahlau">Ceahlău</option>
+                    <option value="apuseni">Apuseni</option>
+                </select>
+            </div>
+            
+            <!-- Date Selection -->
+            <div>
+                <label class="card-label block mb-2">Data Drumeției</label>
+                <input type="date" id="dateInput" class="w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-white/30">
+            </div>
+            
+            <!-- Altitudine -->
+            <div>
+                <label class="card-label block mb-2">Nivel Altitudine</label>
+                <select id="altitudineSelect" class="w-full bg-white/10 backdrop-blur-md border border-white/20 rounded-2xl px-4 py-3 text-white focus:outline-none focus:ring-2 focus:ring-white/30">
+                    <option value="sub">Sub prag (în pădure)</option>
+                    <option value="peste">Peste prag (gol alpin)</option>
+                </select>
+            </div>
+        </div>
+        
+        <div class="flex flex-col md:flex-row gap-2 md:gap-3">
+            <button id="checkWeatherBtn" class="w-full bg-white/20 hover:bg-white/30 backdrop-blur-md text-white font-medium py-3 px-6 rounded-2xl transition-all border border-white/30">
+                Verifică Meteo Real
+            </button>
+            <button id="mockDataBtn" class="w-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-medium py-3 px-6 rounded-2xl transition-all border border-white/20">
+                Date Mock (🔴 Periculos)
+            </button>
+            <button id="mockSafeBtn" class="w-full bg-white/10 hover:bg-white/20 backdrop-blur-md text-white font-medium py-3 px-6 rounded-2xl transition-all border border-white/20">
+                Date Mock (🟢 Sigur)
+            </button>
+        </div>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loadingState" class="max-w-5xl mx-auto text-center py-12 hidden">
+        <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-white/20 border-t-white/60"></div>
+        <p class="mt-4 opacity-60">Se încarcă datele meteo...</p>
+    </div>
+
+    <!-- Results Container -->
+    <div id="resultsContainer" class="max-w-5xl mx-auto hidden">
+        
+        <!-- Section 1: Rezumat meteo -->
+        <div class="mb-6">
+            <!-- Narrative Summary -->
+            <div class="weather-card rounded-2xl md:rounded-3xl p-5 md:p-6 mb-4">
+                <div id="narrativeSummary">
+                    <!-- Summary with verdict will be inserted here -->
+                </div>
+            </div>
+        </div>
+
+        <!-- Section 2: Factori actuali -->
+        <div class="mb-6">
+            <h2 class="text-xl font-medium mb-1 flex items-center gap-2">
+                <span>⚠️</span>
+                <span>Factori actuali care pot influența drumeția</span>
+            </h2>
+            <p class="text-sm opacity-60 mb-4">Sursa: ANM + Buletin Nivologic</p>
+            
+            <div class="grid grid-cols-2 md:grid-cols-2 gap-3" id="actualiContainer">
+                <!-- Current conditions cards will be inserted here -->
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ========================================
+        // DATA CONFIGURATION
+        // ========================================
+        
+        const MASIVE_DATA = {
+            bucegi: {
+                name: "Bucegi",
+                prag: 1800,
+                coords: {
+                    sub: { lat: 45.467, lon: 25.500 },
+                    peste: { lat: 45.400, lon: 25.457 }
+                },
+                avalansa_key: "bucegi"
+            },
+            fagaras: {
+                name: "Făgăraș",
+                prag: 1600,
+                coords: {
+                    sub: { lat: 45.653, lon: 24.787 },
+                    peste: { lat: 45.596, lon: 24.635 }
+                },
+                avalansa_key: "fagaras"
+            },
+            retezat: {
+                name: "Retezat",
+                prag: 1600,
+                coords: {
+                    sub: { lat: 45.372, lon: 23.064 },
+                    peste: { lat: 45.350, lon: 22.880 }
+                },
+                avalansa_key: "retezat"
+            },
+            piatra_craiului: {
+                name: "Piatra Craiului",
+                prag: 1400,
+                coords: {
+                    sub: { lat: 45.506, lon: 25.265 },
+                    peste: { lat: 45.520, lon: 25.215 }
+                },
+                avalansa_key: "piatra_craiului"
+            },
+            ceahlau: {
+                name: "Ceahlău",
+                prag: 1800,
+                coords: {
+                    sub: { lat: 47.058, lon: 25.955 },
+                    peste: { lat: 47.020, lon: 25.960 }
+                },
+                avalansa_key: null
+            },
+            apuseni: {
+                name: "Apuseni",
+                prag: 1500,
+                coords: {
+                    sub: { lat: 46.544, lon: 22.854 },
+                    peste: { lat: 46.682, lon: 22.711 }
+                },
+                avalansa_key: null
+            }
+        };
+
+        const METEOBLUE_API_KEY = 'cljvDyWgqXQe4T1x';
+        const AVALANSA_URL = 'https://raw.githubusercontent.com/SIG212/meteo-scraper/main/date_meteo.json';
+
+        // Weather thresholds
+        const PRAGURI = {
+            windchill: {
+                verde: -15,
+                galben: -25,
+                rosu: -35
+            },
+            vant: {
+                verde: 30,
+                galben: 50,
+                rosu: 80
+            },
+            precipitatii: {
+                verde: 2,
+                galben: 5
+            }
+        };
+
+        // Mock data for testing - includes RED factor
+        const MOCK_DATA = {
+            temperatura: -22,
+            temp_min: -28,
+            temp_max: -18,
+            windchill: -38,  // RED - sub -35°C
+            vant_mean: 55,
+            vant_max: 75,        // RED - peste 50 km/h
+            precip_max_hourly: 2.5,  // YELLOW
+            precip_total_8_20: 15,   // Total în interval 8-20
+            precip_type: 'Zăpadă',
+            thunderstorm_prob: 5,    // GREEN - sub 30%
+            uv_index: 2,             // GREEN
+            cod_vreme: 8,
+            avalansa_nivel: 3,  // RED - nivel 3
+            avalansa_text: "Însemnat",
+            strat_zapada: 120,
+            temp_zapada: -8,
+            vizibilitate: 500  // RED - sub 1000m
+        };
+
+        // ========================================
+        // UTILITY FUNCTIONS
+        // ========================================
+
+        function getStatusColor(value, thresholds) {
+            if (value >= thresholds.rosu || value <= thresholds.rosu) return 'red';
+            if (value >= thresholds.galben || value <= thresholds.galben) return 'yellow';
+            return 'green';
+        }
+
+        // ========================================
+        // NARRATIVE SUMMARY GENERATOR
+        // ========================================
+
+        function generateNarrativeSummary(data) {
+            const sections = [];
+
+            // Helper to determine severity
+            function getSeverity(value, type) {
+                if (type === 'precip') {
+                    if (value >= 5) return 'danger';
+                    if (value >= 2) return 'warning';
+                    return 'safe';
+                }
+                if (type === 'temp') {
+                    if (value < -10) return 'danger';
+                    if (value < 0) return 'warning';
+                    return 'safe';
+                }
+                if (type === 'wind') {
+                    if (value >= 60) return 'danger';
+                    if (value >= 40) return 'warning';
+                    return 'safe';
+                }
+                if (type === 'thunder') {
+                    if (value >= 60) return 'danger';
+                    if (value >= 30) return 'warning';
+                    return 'safe';
+                }
+                if (type === 'viz') {
+                    if (value < 1000) return 'danger';
+                    if (value < 3000) return 'warning';
+                    return 'safe';
+                }
+                if (type === 'snow') {
+                    if (value >= 60) return 'danger';
+                    if (value >= 30) return 'warning';
+                    return 'safe';
+                }
+                return 'safe';
+            }
+
+            // 1. PRECIPITAȚII
+            let precipValue = '';
+            let precipImpact = '';
+            let precipSeverity = getSeverity(data.precip_max_hourly, 'precip');
+            
+            if (data.precip_max_hourly < 0.5) {
+                precipValue = 'Absente';
+                precipImpact = 'Traseu uscat';
+                precipSeverity = 'safe';
+            } else {
+                let tipText = data.precip_type === 'Zăpadă' ? 'Ninsoare' : 
+                             data.precip_type === 'Lapoviță' ? 'Lapoviță' : 'Ploi';
+
+                let intensitate = '';
+                if (data.precip_max_hourly < 1) intensitate = 'slabe';
+                else if (data.precip_max_hourly < 3) intensitate = 'moderate';
+                else if (data.precip_max_hourly < 5) intensitate = 'abundente';
+                else intensitate = 'foarte abundente';
+
+                let ora = data.precip_max_hourly > 1 ? 'după ora 12' : 'după ora 15';
+
+                precipValue = `${tipText} ${intensitate} (${data.precip_max_hourly.toFixed(1)}mm/h) ${ora}`;
+
+                if (data.precip_type === 'Zăpadă') {
+                    if (data.precip_max_hourly < 2) precipImpact = 'Fac poteca ușor alunecoasă';
+                    else if (data.precip_max_hourly < 4) precipImpact = 'Reduc vizibilitatea și fac poteca dificilă';
+                    else precipImpact = 'Condiții dificile, necesită echipament complet de iarnă';
+                } else {
+                    if (data.precip_max_hourly < 2) precipImpact = 'Fac poteca ușor alunecoasă';
+                    else if (data.precip_max_hourly < 4) precipImpact = 'Necesită echipament impermeabil complet';
+                    else precipImpact = 'Reduc semnificativ vizibilitatea și confortul';
+                }
+            }
+            
+            sections.push({ label: 'PRECIPITAȚII', value: precipValue, impact: precipImpact, severity: precipSeverity });
+
+            // 2. TEMPERATURĂ
+            let tempDescriptor = '';
+            let tempImpact = '';
+            let tempSeverity = getSeverity(data.temperatura, 'temp');
+            
+            if (data.temperatura < -10) {
+                tempDescriptor = 'Foarte scăzută';
+                tempImpact = 'Risc de degerături, necesită echipament de iarnă complet';
+            } else if (data.temperatura < 0) {
+                tempDescriptor = 'Scăzută';
+                tempImpact = 'Necesită haine călduroase și straturi multiple';
+            } else if (data.temperatura < 10) {
+                tempDescriptor = 'Răcoroasă';
+                tempImpact = 'Necesită haine călduroase';
+            } else if (data.temperatura < 20) {
+                tempDescriptor = 'Plăcută';
+                tempImpact = 'Îmbrăcăminte standard de drumeție';
+            } else {
+                tempDescriptor = 'Calduroasă';
+                tempImpact = 'Necesită protecție solară și hidratare frecventă';
+            }
+            
+            sections.push({ 
+                label: 'TEMPERATURA', 
+                value: `${tempDescriptor} (${Math.round(data.temperatura)}°C)`, 
+                impact: tempImpact,
+                severity: tempSeverity
+            });
+
+            // 3. VÂNT
+            let vantIntensity = '';
+            let rafale = Math.round(data.vant_max * 1.3);
+            let rafaleText = '';
+            let vantImpact = '';
+            let vantSeverity = getSeverity(data.vant_max, 'wind');
+
+            if (data.vant_max < 20) {
+                vantIntensity = 'Slab';
+                rafaleText = 'ușoare';
+                vantImpact = 'Nu afectează semnificativ drumeția';
+            } else if (data.vant_max < 40) {
+                vantIntensity = 'Moderat';
+                rafaleText = rafale < 50 ? 'moderate' : 'puternice';
+                vantImpact = 'Cresc senzația de frig';
+            } else if (data.vant_max < 60) {
+                vantIntensity = 'Puternic';
+                rafaleText = 'puternice';
+                vantImpact = 'Cresc semnificativ senzația de frig și îngreunează mersul pe creastă';
+            } else {
+                vantIntensity = 'Foarte puternic';
+                rafaleText = 'foarte puternice';
+                vantImpact = 'Fac drumeția periculoasă în zone expuse, risc de pierdere echilibru';
+            }
+
+            sections.push({ 
+                label: 'VÂNT', 
+                value: `${vantIntensity} (${Math.round(data.vant_max)} km/h), rafale ${rafaleText} (${rafale} km/h)`, 
+                impact: vantImpact,
+                severity: vantSeverity
+            });
+
+            // 4. FURTUNI
+            const thunderProb = data.thunderstorm_prob || 0;
+            let furtunaNivel = '';
+            let furtunaImpact = '';
+            let furtunaSeverity = getSeverity(thunderProb, 'thunder');
+
+            if (thunderProb < 30) {
+                furtunaNivel = 'Risc scăzut';
+                furtunaImpact = 'Nu afectează traseul în mod semnificativ';
+            } else if (thunderProb < 60) {
+                furtunaNivel = 'Risc moderat';
+                furtunaImpact = 'Evitați crestele și zonele expuse în timpul precipitațiilor';
+            } else {
+                furtunaNivel = 'Risc ridicat';
+                furtunaImpact = 'Pericol serios, evitați zonele expuse';
+            }
+
+            sections.push({ 
+                label: 'FURTUNI', 
+                value: `${furtunaNivel} (${Math.round(thunderProb)}%)`, 
+                impact: furtunaImpact,
+                severity: furtunaSeverity
+            });
+
+            // 5. VIZIBILITATE / NORI
+            let vizNivel = '';
+            let vizImpact = '';
+            let vizSeverity = 'safe';
+
+            if (data.vizibilitate !== undefined) {
+                vizSeverity = getSeverity(data.vizibilitate, 'viz');
+                if (data.vizibilitate < 1000) {
+                    vizNivel = 'Redusă din cauza ceții';
+                    vizImpact = 'Risc de dezorientare, folosiți GPS și urmăriți atent marcajele';
+                } else if (data.vizibilitate < 3000) {
+                    vizNivel = 'Variabilă, cu nori joși';
+                    vizImpact = 'Atenție sporită la marcaje';
+                } else {
+                    vizNivel = 'Bună';
+                    vizImpact = 'Vizual pe traseu clar';
+                }
+            } else {
+                if (data.precip_max_hourly > 3) {
+                    vizNivel = 'Redusă din cauza precipitațiilor';
+                    vizImpact = 'Atenție sporită la orientare';
+                    vizSeverity = 'danger';
+                } else if (data.precip_max_hourly > 1) {
+                    vizNivel = 'Variabilă, cu înnorări trecătoare';
+                    vizImpact = 'Vizual pe traseu în mare parte clar';
+                    vizSeverity = 'warning';
+                } else {
+                    vizNivel = 'Bună, cu înnorări trecătoare';
+                    vizImpact = 'Vizual pe traseu în mare parte clar';
+                    vizSeverity = 'safe';
+                }
+            }
+
+            sections.push({ 
+                label: 'VIZIBILITATE / NORI', 
+                value: vizNivel, 
+                impact: vizImpact,
+                severity: vizSeverity
+            });
+
+            // 6. ZĂPADĂ PE TRASEU
+            let zapadaNivel = '';
+            let zapadaImpact = '';
+            let zapadaSeverity = 'safe';
+
+            if (data.strat_zapada !== undefined && data.strat_zapada > 0) {
+                zapadaSeverity = getSeverity(data.strat_zapada, 'snow');
+                
+                if (data.strat_zapada < 10) {
+                    zapadaNivel = 'Petice izolate pe zonele umbrite';
+                    zapadaImpact = 'Pot face poteca alunecoasă, necesită atenție la pași';
+                } else if (data.strat_zapada < 30) {
+                    zapadaNivel = `Strat continuu (${data.strat_zapada} cm)`;
+                    zapadaImpact = 'Necesită bocanci impermeabili și atenție constantă';
+                } else if (data.strat_zapada < 60) {
+                    zapadaNivel = `Strat consistent (${data.strat_zapada} cm)`;
+                    zapadaImpact = 'Încetinește semnificativ înaintarea, necesită echipament de iarnă';
+                } else {
+                    zapadaNivel = `Strat gros (${data.strat_zapada} cm)`;
+                    zapadaImpact = 'Condiții foarte dificile, necesită crampoane și experiență';
+                }
+
+                sections.push({ 
+                    label: 'ZĂPADĂ PE TRASEU', 
+                    value: zapadaNivel, 
+                    impact: zapadaImpact,
+                    severity: zapadaSeverity
+                });
+            } else {
+                sections.push({ 
+                    label: 'ZĂPADĂ PE TRASEU', 
+                    value: 'Absentă', 
+                    impact: 'Potecă curată',
+                    severity: 'safe'
+                });
+            }
+
+            // Separate by severity
+            const dangerousSections = sections.filter(s => s.severity === 'danger' || s.severity === 'warning');
+            const safeSections = sections.filter(s => s.severity === 'safe');
+
+            // Determine overall verdict
+            const hasDanger = sections.some(s => s.severity === 'danger');
+            const hasWarning = sections.some(s => s.severity === 'warning');
+            
+            let overallVerdict = '';
+            let verdictColor = '';
+            
+            if (hasDanger) {
+                overallVerdict = 'Condiții periculoase';
+                verdictColor = 'severity-danger';
+            } else if (hasWarning) {
+                overallVerdict = 'Condițiile pot fi dificile';
+                verdictColor = 'severity-warning';
+            } else {
+                overallVerdict = 'Condiții bune';
+                verdictColor = 'severity-safe';
+            }
+
+            // If all safe, show first 3
+            const visibleSections = dangerousSections.length > 0 ? dangerousSections : safeSections.slice(0, 3);
+            const hiddenSections = dangerousSections.length > 0 ? safeSections : safeSections.slice(3);
+
+            // Generate HTML for visible sections
+            let html = `
+                <div class="flex items-baseline gap-2 mb-4">
+                    <h3 class="text-lg md:text-xl font-medium text-white">Rezumat meteo:</h3>
+                    <span class="text-base md:text-lg font-medium ${verdictColor}">${overallVerdict}</span>
+                </div>
+            `;
+            
+            html += visibleSections.map(s => `
+                <div class="summary-section">
+                    <div class="text-xs uppercase tracking-wide text-slate-400 mb-1">${s.label}</div>
+                    <div class="text-sm md:text-base font-medium severity-${s.severity} mb-1">${s.value}</div>
+                    <div class="text-sm text-slate-300 opacity-80">${s.impact}</div>
+                </div>
+            `).join('');
+
+            // Add collapse toggle if there are hidden sections
+            if (hiddenSections.length > 0) {
+                html += `
+                    <button id="toggleSummaryFactors" class="w-full text-left py-2 flex items-center gap-2 text-sm text-slate-400 hover:text-slate-300 transition-colors cursor-pointer">
+                        <span>Vezi toți factorii</span>
+                        <svg id="toggleSummaryIcon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
+                        </svg>
+                    </button>
+                    <div id="hiddenSummaryFactors" class="hidden mt-3">
+                        ${hiddenSections.map(s => `
+                            <div class="summary-section">
+                                <div class="text-xs uppercase tracking-wide text-slate-400 mb-1">${s.label}</div>
+                                <div class="text-sm md:text-base font-medium severity-${s.severity} mb-1">${s.value}</div>
+                                <div class="text-sm text-slate-300 opacity-80">${s.impact}</div>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            return html;
+        }
+
+        // Custom messages configuration - will be replaced with your specific messages
+        const CUSTOM_MESSAGES = {
+            windchill: {
+                red: 'Pericol de degerături. Folosiți echipament de iarnă complet.',
+                yellow: 'Frig intens. Echipament adecvat necesar.',
+                green: 'Temperatură acceptabilă pentru drumeție.'
+            },
+            vant: {
+                red: 'Vânt foarte puternic. Drumeția este periculoasă.',
+                yellow: 'Vânt moderat. Atenție pe creste și zone expuse.',
+                green: 'Condiții bune de vânt.'
+            },
+            precipitatii_max: {
+                red: 'Precipitații foarte intense. Risc crescut.',
+                yellow: 'Precipitații moderate. Echipament impermeabil necesar.',
+                green: 'Precipitații slabe sau absente.'
+            },
+            precipitatii_total: {
+                red: 'Acumulare mare de precipitații. Condiții dificile.',
+                yellow: 'Acumulare moderată. Pregătiți echipament adecvat.',
+                green: 'Acumulare redusă de precipitații.'
+            },
+            thunderstorm: {
+                red: 'Risc ridicat de furtună. Evitați crestele.',
+                yellow: 'Risc moderat de descărcări electrice.',
+                green: 'Fără risc semnificativ de furtună.'
+            },
+            uv: {
+                red: 'UV foarte ridicat. Protecție solară obligatorie.',
+                yellow: 'UV moderat-ridicat. Folosiți cremă de protecție.',
+                green: 'UV scăzut.'
+            },
+            vizibilitate: {
+                red: 'Vizibilitate foarte redusă. Risc de dezorientare.',
+                yellow: 'Vizibilitate redusă. Atenție la marcaje.',
+                green: 'Vizibilitate bună.'
+            },
+            avalansa: {
+                red: 'Risc mare de avalanșă. Evitați zonele expuse.',
+                yellow: 'Risc moderat de avalanșă. Experiență necesară.',
+                green: 'Risc scăzut de avalanșă.'
+            }
+        };
+
+        function getWindchillStatus(windchill) {
+            if (windchill < -35) return { color: 'red', level: 'danger', message: CUSTOM_MESSAGES.windchill.red };
+            if (windchill < -25) return { color: 'red', level: 'danger', message: CUSTOM_MESSAGES.windchill.red };
+            if (windchill < -15) return { color: 'yellow', level: 'warning', message: CUSTOM_MESSAGES.windchill.yellow };
+            return { color: 'green', level: 'safe', message: CUSTOM_MESSAGES.windchill.green };
+        }
+
+        function getVantStatus(vant) {
+            if (vant > 80) return { color: 'red', level: 'danger', message: CUSTOM_MESSAGES.vant.red };
+            if (vant > 50) return { color: 'red', level: 'danger', message: CUSTOM_MESSAGES.vant.red };
+            if (vant > 30) return { color: 'yellow', level: 'warning', message: CUSTOM_MESSAGES.vant.yellow };
+            return { color: 'green', level: 'safe', message: CUSTOM_MESSAGES.vant.green };
+        }
+
+        function getPrecipMaxStatus(precipMax) {
+            if (precipMax > 5) return { color: 'red', level: 'danger', message: CUSTOM_MESSAGES.precipitatii_max.red };
+            if (precipMax > 2) return { color: 'yellow', level: 'warning', message: CUSTOM_MESSAGES.precipitatii_max.yellow };
+            return { color: 'green', level: 'safe', message: CUSTOM_MESSAGES.precipitatii_max.green };
+        }
+
+        function getPrecipTotalStatus(precipTotal) {
+            if (precipTotal > 20) return { color: 'red', level: 'danger', message: CUSTOM_MESSAGES.precipitatii_total.red };
+            if (precipTotal > 10) return { color: 'yellow', level: 'warning', message: CUSTOM_MESSAGES.precipitatii_total.yellow };
+            return { color: 'green', level: 'safe', message: CUSTOM_MESSAGES.precipitatii_total.green };
+        }
+
+        function getThunderstormStatus(prob) {
+            if (prob > 60) return { color: 'red', level: 'danger', message: CUSTOM_MESSAGES.thunderstorm.red };
+            if (prob > 30) return { color: 'yellow', level: 'warning', message: CUSTOM_MESSAGES.thunderstorm.yellow };
+            return { color: 'green', level: 'safe', message: CUSTOM_MESSAGES.thunderstorm.green };
+        }
+
+        function getUVStatus(uv) {
+            if (uv > 7) return { color: 'red', level: 'danger', message: CUSTOM_MESSAGES.uv.red };
+            if (uv > 5) return { color: 'yellow', level: 'warning', message: CUSTOM_MESSAGES.uv.yellow };
+            return { color: 'green', level: 'safe', message: CUSTOM_MESSAGES.uv.green };
+        }
+
+        function getVizibilitateStatus(viz) {
+            if (viz < 1000) return { color: 'red', level: 'danger', message: CUSTOM_MESSAGES.vizibilitate.red };
+            if (viz < 3000) return { color: 'yellow', level: 'warning', message: CUSTOM_MESSAGES.vizibilitate.yellow };
+            return { color: 'green', level: 'safe', message: CUSTOM_MESSAGES.vizibilitate.green };
+        }
+
+        function getAvalansaStatus(nivel) {
+            if (nivel >= 4) return { color: 'red', level: 'danger', message: CUSTOM_MESSAGES.avalansa.red };
+            if (nivel === 3) return { color: 'red', level: 'danger', message: CUSTOM_MESSAGES.avalansa.red };
+            if (nivel === 2) return { color: 'yellow', level: 'warning', message: CUSTOM_MESSAGES.avalansa.yellow };
+            return { color: 'green', level: 'safe', message: CUSTOM_MESSAGES.avalansa.green };
+        }
+
+        function getWeatherIcon(cod) {
+            const icons = {
+                1: '☀️', 2: '🌤️', 3: '⛅', 4: '☁️', 5: '🌧️',
+                6: '🌧️', 7: '❄️', 8: '🌨️', 9: '⛈️'
+            };
+            return icons[cod] || '🌤️';
+        }
+
+        // ========================================
+        // CARD RENDERING FUNCTIONS
+        // ========================================
+
+        function createWeatherCard(title, value, unit, status, icon, factor_id) {
+            return `
+                <div class="weather-card rounded-2xl md:rounded-3xl p-4 md:p-5" data-status="${status.color}" data-factor="${factor_id}">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-base md:text-lg opacity-60">${icon}</span>
+                        <p class="card-label">${title}</p>
+                    </div>
+                    <div class="flex items-baseline mb-1">
+                        <span class="metric-value">${value}</span>
+                        ${unit ? `<span class="metric-unit">${unit}</span>` : ''}
+                    </div>
+                    <div class="status-bar ${status.color}"></div>
+                    <p class="status-message ${status.color}">${status.message}</p>
+                </div>
+            `;
+        }
+
+        function createSimpleCard(title, value, icon, additionalInfo = '', factor_id = '') {
+            return `
+                <div class="weather-card rounded-2xl md:rounded-3xl p-4 md:p-5" data-status="neutral" data-factor="${factor_id}">
+                    <div class="flex items-center gap-2 mb-2">
+                        <span class="text-base md:text-lg opacity-60">${icon}</span>
+                        <p class="card-label">${title}</p>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-3xl md:text-4xl font-light">${value}</span>
+                    </div>
+                    ${additionalInfo ? `<p class="card-detail opacity-70">${additionalInfo}</p>` : ''}
+                </div>
+            `;
+        }
+
+        // ========================================
+        // API FUNCTIONS
+        // ========================================
+
+        async function fetchMeteoblueData(masiv, altitudine, selectedDate) {
+            const coords = MASIVE_DATA[masiv].coords[altitudine];
+            const apiUrl = `https://my.meteoblue.com/packages/basic-1h_basic-day_air-3h_snowice-3h?apikey=${METEOBLUE_API_KEY}&lat=${coords.lat}&lon=${coords.lon}&asl=2000&format=json`;
+            
+            // Try multiple CORS proxies
+            const proxies = [
+                `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`,
+                `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(apiUrl)}`,
+                apiUrl // Try direct as fallback
+            ];
+            
+            for (let proxyUrl of proxies) {
+                try {
+                    console.log('Trying proxy:', proxyUrl);
+                    const response = await fetch(proxyUrl);
+                    if (!response.ok) {
+                        console.warn('Proxy failed with status:', response.status);
+                        continue;
+                    }
+                    const data = await response.json();
+                    
+                    console.log('Meteoblue response SUCCESS:', data);
+                    
+                    // Find the selected date in the forecast
+                    const dateStr = selectedDate.toISOString().split('T')[0];
+                    
+                    // Daily data
+                    const dateIndexDay = data.data_day.time.findIndex(t => t.startsWith(dateStr));
+                    if (dateIndexDay === -1) {
+                        console.warn('Date not found in forecast');
+                        return null;
+                    }
+                    
+                    // Hourly data - filter hours 8-20 for the selected date
+                    const hourlyData = data.data_1h.time.map((time, idx) => ({
+                        time: time,
+                        hour: new Date(time).getHours(),
+                        date: time.split('T')[0],
+                        precipitation: data.data_1h.precipitation[idx],
+                        temperature: data.data_1h.temperature[idx],
+                        pictocode: data.data_1h.pictocode[idx]
+                    })).filter(h => h.date === dateStr && h.hour >= 8 && h.hour <= 20);
+                    
+                    // Calculate precipitation max and total for 8-20 interval
+                    const precipMaxHourly = Math.max(...hourlyData.map(h => h.precipitation), 0);
+                    const precipTotalDaily = hourlyData.reduce((sum, h) => sum + h.precipitation, 0);
+                    
+                    // Get snow fraction (3h intervals, find closest to midday)
+                    const snowData = data.data_3h_snowice?.snowfraction || [];
+                    const snowTimes = data.data_3h_snowice?.time || [];
+                    const middayIdx = snowTimes.findIndex(t => t.startsWith(dateStr) && t.includes('12:00'));
+                    const snowFraction = middayIdx >= 0 ? snowData[middayIdx] : 0;
+                    
+                    // Determine precipitation type
+                    let precipType = 'Fără';
+                    if (precipMaxHourly > 0.1) {
+                        if (snowFraction > 0.7) precipType = 'Zăpadă';
+                        else if (snowFraction > 0.3) precipType = 'Lapoviță';
+                        else precipType = 'Ploaie';
+                    }
+                    
+                    // Thunderstorm probability (3h intervals, get max for the day)
+                    const thunderData = data.data_3h?.convective_precipitation || [];
+                    const thunderTimes = data.data_3h?.time || [];
+                    const thunderProbs = thunderTimes.map((time, idx) => {
+                        if (time.startsWith(dateStr)) return thunderData[idx] || 0;
+                        return 0;
+                    }).filter(p => p > 0);
+                    const thunderstormProb = thunderProbs.length > 0 ? Math.max(...thunderProbs) : 0;
+                    
+                    // UV Index
+                    const uvIndex = data.data_day.uvindex ? data.data_day.uvindex[dateIndexDay] : 0;
+                    
+                    return {
+                        // Daily aggregates
+                        temperatura: data.data_day.temperature_mean[dateIndexDay],
+                        temp_min: data.data_day.temperature_min[dateIndexDay],
+                        temp_max: data.data_day.temperature_max[dateIndexDay],
+                        vant_mean: data.data_day.windspeed_mean[dateIndexDay],
+                        vant_max: data.data_day.windspeed_max[dateIndexDay],
+                        cod_vreme: data.data_day.pictocode[dateIndexDay],
+                        
+                        // Precipitation details
+                        precip_max_hourly: precipMaxHourly,
+                        precip_total_8_20: precipTotalDaily,
+                        precip_type: precipType,
+                        
+                        // Additional factors
+                        thunderstorm_prob: thunderstormProb,
+                        uv_index: uvIndex
+                    };
+                } catch (error) {
+                    console.error('Proxy attempt failed:', error);
+                    continue;
+                }
+            }
+            
+            console.error('All Meteoblue proxy attempts failed');
+            return null;
+        }
+
+        async function fetchAvalansaData(masiv) {
+            const avalansaKey = MASIVE_DATA[masiv].avalansa_key;
+            if (!avalansaKey) {
+                return { nivel: 0, text: 'Nu se aplică' };
+            }
+            
+            const apiUrl = AVALANSA_URL;
+            
+            // Try multiple proxies
+            const proxies = [
+                `https://corsproxy.io/?${encodeURIComponent(apiUrl)}`,
+                `https://api.codetabs.com/v1/proxy?quest=${encodeURIComponent(apiUrl)}`,
+                apiUrl // Try direct (GitHub raw should work)
+            ];
+            
+            for (let proxyUrl of proxies) {
+                try {
+                    console.log('Trying avalansa proxy:', proxyUrl);
+                    const response = await fetch(proxyUrl);
+                    if (!response.ok) {
+                        console.warn('Avalansa proxy failed with status:', response.status);
+                        continue;
+                    }
+                    const data = await response.json();
+                    
+                    console.log('Avalansa response SUCCESS:', data);
+                    
+                    const masivData = data.date[avalansaKey];
+                    if (!masivData) {
+                        return { nivel: 0, text: 'Date indisponibile' };
+                    }
+                    
+                    // Use "peste_1800" data (more conservative)
+                    const pesteData = masivData.peste_1800 || masivData.sub_1800;
+                    return {
+                        nivel: pesteData.nivel || 0,
+                        text: pesteData.text || 'Necunoscut'
+                    };
+                } catch (error) {
+                    console.error('Avalansa proxy attempt failed:', error);
+                    continue;
+                }
+            }
+            
+            console.error('All Avalansa proxy attempts failed');
+            return { nivel: 0, text: 'Eroare la încărcare' };
+        }
+
+        // ========================================
+        // RENDERING FUNCTIONS
+        // ========================================
+
+        function renderWeatherData(data) {
+            const actualiContainer = document.getElementById('actualiContainer');
+            const narrativeSummary = document.getElementById('narrativeSummary');
+            
+            // Generate and display narrative summary (already returns HTML)
+            narrativeSummary.innerHTML = generateNarrativeSummary(data);
+            
+            // Section: Factori actuali (ANM + Avalanșă)
+            let actualiHTML = '';
+            
+            // Avalanșă
+            const avalansaStatus = getAvalansaStatus(data.avalansa_nivel);
+            actualiHTML += createWeatherCard('Risc avalanșă', data.avalansa_text, '', avalansaStatus, '⚠️', 'avalansa');
+            
+            // Strat zăpadă
+            if (data.strat_zapada !== undefined) {
+                actualiHTML += createSimpleCard(
+                    'Strat zăpadă',
+                    data.strat_zapada + ' cm',
+                    '❄️',
+                    data.temp_zapada ? `Temperatură: ${data.temp_zapada}°C` : 'Date ANM',
+                    'zapada'
+                );
+            }
+            
+            // Vizibilitate
+            if (data.vizibilitate !== undefined) {
+                const vizibilitateStatus = getVizibilitateStatus(data.vizibilitate);
+                actualiHTML += createWeatherCard(
+                    'Vizibilitate',
+                    data.vizibilitate >= 1000 ? (data.vizibilitate / 1000).toFixed(1) : data.vizibilitate,
+                    data.vizibilitate >= 1000 ? 'km' : 'm',
+                    vizibilitateStatus,
+                    '👁️',
+                    'vizibilitate'
+                );
+            }
+            
+            actualiContainer.innerHTML = actualiHTML;
+            
+            // Add collapse toggle functionality for summary
+            const toggleSummaryBtn = document.getElementById('toggleSummaryFactors');
+            if (toggleSummaryBtn) {
+                toggleSummaryBtn.addEventListener('click', () => {
+                    const container = document.getElementById('hiddenSummaryFactors');
+                    const icon = document.getElementById('toggleSummaryIcon');
+                    container.classList.toggle('hidden');
+                    icon.classList.toggle('rotate-180');
+                });
+            }
+        }
+
+        function getWeatherDescription(cod) {
+            const descriptions = {
+                1: 'Senin',
+                2: 'Parțial senin',
+                3: 'Parțial noros',
+                4: 'Noros',
+                5: 'Ploaie ușoară',
+                6: 'Ploaie',
+                7: 'Ninsoare ușoară',
+                8: 'Ninsoare',
+                9: 'Furtună'
+            };
+            return descriptions[cod] || 'Variabil';
+        }
+
+        // ========================================
+        // EVENT HANDLERS
+        // ========================================
+
+        document.getElementById('checkWeatherBtn').addEventListener('click', async () => {
+            const masiv = document.getElementById('masivSelect').value;
+            const altitudine = document.getElementById('altitudineSelect').value;
+            const dateInput = document.getElementById('dateInput').value;
+            
+            if (!dateInput) {
+                alert('Te rog selectează o dată pentru drumeție');
+                return;
+            }
+            
+            const selectedDate = new Date(dateInput);
+            
+            // Show loading
+            document.getElementById('loadingState').classList.remove('hidden');
+            document.getElementById('resultsContainer').classList.add('hidden');
+            
+            try {
+                // Fetch data from APIs
+                const [meteoData, avalansaData] = await Promise.all([
+                    fetchMeteoblueData(masiv, altitudine, selectedDate),
+                    fetchAvalansaData(masiv)
+                ]);
+                
+                if (!meteoData) {
+                    alert('Nu s-au putut încărca datele meteo. Încearcă din nou.');
+                    document.getElementById('loadingState').classList.add('hidden');
+                    return;
+                }
+                
+                const combinedData = {
+                    ...meteoData,
+                    avalansa_nivel: avalansaData.nivel,
+                    avalansa_text: avalansaData.text,
+                    strat_zapada: undefined, // ANM data would go here
+                    temp_zapada: undefined,
+                    vizibilitate: undefined  // ANM data would go here
+                };
+                
+                renderWeatherData(combinedData);
+                
+                // Show results
+                document.getElementById('loadingState').classList.add('hidden');
+                document.getElementById('resultsContainer').classList.remove('hidden');
+                
+            } catch (error) {
+                console.error('Error loading weather data:', error);
+                document.getElementById('loadingState').classList.add('hidden');
+                alert('A apărut o eroare la încărcarea datelor. Verifică consola.');
+            }
+        });
+
+        document.getElementById('mockDataBtn').addEventListener('click', () => {
+            renderWeatherData(MOCK_DATA);
+            
+            document.getElementById('resultsContainer').classList.remove('hidden');
+            document.getElementById('loadingState').classList.add('hidden');
+        });
+
+        document.getElementById('mockSafeBtn').addEventListener('click', () => {
+            const safeData = {
+                temperatura: 8,
+                temp_min: 5,
+                temp_max: 12,
+                windchill: -5,  // GREEN
+                vant_mean: 12,
+                vant_max: 20,   // GREEN
+                precip_max_hourly: 0.8,  // GREEN
+                precip_total_8_20: 4,    // GREEN
+                precip_type: 'Fără',
+                thunderstorm_prob: 10,   // GREEN
+                uv_index: 4,             // GREEN
+                cod_vreme: 2,
+                avalansa_nivel: 1,  // GREEN
+                avalansa_text: "Scăzut",
+                strat_zapada: 25,
+                temp_zapada: -2,
+                vizibilitate: 15000  // GREEN - 15km
+            };
+            
+            renderWeatherData(safeData);
+            
+            document.getElementById('resultsContainer').classList.remove('hidden');
+            document.getElementById('loadingState').classList.add('hidden');
+        });
+
+        // Set today's date as default
+        document.getElementById('dateInput').valueAsDate = new Date();
+    </script>
+
+</body>
+</html>
